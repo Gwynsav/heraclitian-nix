@@ -1,16 +1,29 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# ---------------------------------- #
+# -- Ephemeral Root Configuration -- #
+# ---------------------------------- #
 
 { config, pkgs, lib, ... }:
 
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+let 
+  impermanence = builtins.fetchTarball {
+    url    = 
+      "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+    sha256 = "0hpp8y80q688mvnq8bhvksgjb6drkss5ir4chcyyww34yax77z0l";
+  };
+in
 
-  # Use EFI grub 2 as boot loader.
+{
+  imports = [
+    # Import the impermanence module.
+    "${impermanence}/nixos.nix"
+
+    # Import other system configuration files.
+    ./hardware-configuration.nix
+    ( import ./home { inherit pkgs; } )
+  ];
+
+  # Boot Loader
+  # -----------
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -21,7 +34,8 @@
     };
   };
 
-  # Define users.
+  # Users
+  # -----
   users = {
     mutableUsers = false;
     users = {
@@ -37,16 +51,28 @@
     };
   };
 
-  # Filesystem and persisted system files.
+  # Filesystem & Persistent Files
+  # -----------------------------
   fileSystems."/" = {
     device  = "none";
     fsType  = "tmpfs";
     options = [ "defaults" "size=2G" "mode=755" ];
   };
-  environment.etc."machine-id".source =
-    "/nix/persist/etc/machine-id";
 
-  # Networking.
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/etc/nixos"
+      "/etc/NetworkManager/system-connections"
+    ];
+    files = [
+      "/etc/machine-id"
+    ];
+  }; 
+  # environment.etc."machine-id".source =
+  #   "/nix/persist/etc/machine-id";
+
+  # Networking
+  # ----------
   networking = {
     hostName              = "heraclitus"; # Define your hostname.
     networkmanager.enable = true;         # Easiest to use and most distros use this by default.
@@ -56,7 +82,8 @@
     # firewall.allowedUDPPorts = [ ... ];
   };
 
-  # Localization and Time.
+  # Localization and Time
+  # ---------------------
   time.timeZone = "Europe/Amsterdam";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -64,7 +91,8 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # List packages installed in system profile. To search, run:
+  # Packages
+  # --------
   environment.systemPackages = lib.attrValues {
     inherit (pkgs)
       git
