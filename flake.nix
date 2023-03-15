@@ -7,9 +7,12 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
     nixpkgs.follows = "stable";
+   
+    impermanence.url = "github:nix-community/impermanence";
+    home-manager.url = "github:nix-community/home-manager";
   };
   
-  outputs = { self, nixpkgs, ... } @inputs:
+  outputs = { self, nixpkgs, impermanence, home-manager, ... } @inputs:
     with nixpkgs.lib; let
 
       config = {
@@ -33,7 +36,7 @@
       nixosConfigurations = {
         sedentary = 
           import ./systems/sedentary
-          { inherit config nixpkgs overlays inputs; };
+          { inherit config nixpkgs overlays inputs impermanence home-manager; };
       };
       sedentary = self.nixosConfigurations.sedentary.config.system.build.toplevel;
     };
