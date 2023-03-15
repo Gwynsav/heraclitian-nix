@@ -37,7 +37,7 @@ in
           ".screenrc"
           ".gitconfig"
         ];
-        allowOther = false;
+        allowOther = true;
       };
 
       stateVersion = "22.11";

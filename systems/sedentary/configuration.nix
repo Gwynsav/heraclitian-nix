@@ -68,8 +68,8 @@ in
       "/etc/machine-id"
     ];
   }; 
-  # environment.etc."machine-id".source =
-  #   "/nix/persist/etc/machine-id";
+
+  programs.fuse.userAllowOther = true;
 
   # Networking
   # ----------

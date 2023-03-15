@@ -1,6 +1,6 @@
-{ config, nixpkgs, overlays, inputs }: with nixpkgs;
+{ config, nixpkgs, overlays, inputs }: 
 
-lib.nixosSystem rec {
+with nixpkgs; lib.nixosSystem {
   modules = [
     { nixpkgs = { inherit config overlays; }; }
     ./configuration.nix
