@@ -2,7 +2,7 @@
 # -- Ephemeral Root Configuration -- #
 # ---------------------------------- #
 
-{ config, pkgs, lib, inputs, impermanence, home-manager, ... }:
+{ config, pkgs, lib, inputs, overlays, impermanence, home-manager, ... }:
 
 {
   imports = [
@@ -12,7 +12,7 @@
 
     # Import other system configuration files.
     ./hardware-configuration.nix
-    ( import ./home { inherit pkgs impermanence home-manager; } )
+    ( import ./home { inherit config pkgs impermanence home-manager; } )
   ];
 
   networking.hostName = "sedentary";

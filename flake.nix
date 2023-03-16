@@ -10,6 +10,7 @@
    
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
+    nixpkgs-f2k.url  = "github:fortuneteller2k/nixpkgs-f2k";
   };
   
   outputs = { self, nixpkgs, impermanence, home-manager, ... } @inputs:
@@ -24,7 +25,10 @@
       overlays = with inputs; [
         (final: _:
           let inherit (final) system;
-          in {
+          in (with nixpkgs-f2k.packages.${system}; {
+            awesome = awesome-git;
+            picom   = picom-dccsillag;
+          }) // {
             master   = import master   { inherit config system; };
             stable   = import stable   { inherit config system; };
             unstable = import unstable { inherit config system; };

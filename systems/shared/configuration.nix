@@ -154,25 +154,25 @@
 
   # X Server
   # --------
-  # services.xserver = {
-  #   enable     = true;
-  #   layout     = "us";
-  #   xkbOptions = "caps:super";
-  #   libinput = {
-  #     enable             = true;
-  #     mouse.accelProfile = false;
-  #   };
-  #   displayManager = {
-  #     sddm.enable    = true;
-  #     defaultSession = "none+awesome";
-  #   };
-  #   windowManager.awesome = {
-  #     enable     = true;
-  #     luaModules = lib.attrValues {
-  #       inherit (pkgs.luaPackages) lgi ldbus luadbi-mysql luaposix;
-  #     };
-  #   };
-  # };
+  services.xserver = {
+    enable     = true;
+    layout     = "us";
+    xkbOptions = "caps:super";
+    libinput = {
+      enable             = true;
+      mouse.accelProfile = "flat";
+    };
+    displayManager = {
+      sddm.enable    = true;
+      defaultSession = "none+awesome";
+    };
+    windowManager.awesome = {
+      enable     = true;
+      luaModules = lib.attrValues {
+        inherit (pkgs.luaPackages) lgi ldbus luadbi-mysql luaposix;
+      };
+    };
+  };
 
   # Qt / GTK
   # --------

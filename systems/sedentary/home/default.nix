@@ -1,4 +1,4 @@
-{ pkgs, impermanence, home-manager }:
+{ config, pkgs, impermanence, home-manager, ... }:
 
 {
   # Import Home Manager
@@ -8,27 +8,7 @@
 
   home-manager.users.gw = { pkgs, ... }: {
     imports = [ 
-      impermanence.nixosModules.home-manager.impermanence
+      ( import ../../shared/home.nix { inherit config pkgs impermanence; } )
     ];
-
-    programs.home-manager.enable = true;
-    home = {
-      persistence."/nix/persist/home/gw" = {
-        directories = [ 
-          "Desktop" "Downloads" "Music" "Pictures"
-          ".local/share/keyrings" ".local/share/direnv"
-          {
-            directory = ".local/share/Steam";
-            method    = "symlink";
-          }
-        ];
-        files = [
-          ".screenrc"
-          ".gitconfig"
-        ];
-        allowOther = true;
-      };
-      stateVersion = "22.11";
-    };
   };
 }
