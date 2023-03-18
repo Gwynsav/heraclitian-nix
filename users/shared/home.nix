@@ -1,12 +1,9 @@
 { config, pkgs, impermanence, ... }:
 
 {
-  imports = [ 
-    impermanence.nixosModules.home-manager.impermanence
-  ];
-
   # Impermanence
-  # ------------
+  # -----------
+  imports = [ impermanence.nixosModules.home-manager.impermanence ];
   home.persistence."/nix/persist/home/gw" = {
     directories = [ 
       "Desktop" "Downloads" "Music" "Pictures"
@@ -27,10 +24,6 @@
   # ------------
   programs.home-manager.enable = true;
   home = {
-    username      = "gw";
-    homeDirectory = "/home/gw";
-    stateVersion = "22.11";
-
     file = {
       ".local/bin/fetch" = {
          text       = import ./bin/fetch.nix {};
@@ -44,9 +37,11 @@
         "${pkgs.phinger-cursors}/share/icons/phinger-cursors";
     };
     sessionVariables.XDG_DATA_HOME = 
-      "${config.home-manager.users.gw.home.homeDirectory}/.local/share";
+      "${config.home.homeDirectory}/.local/share";
     sessionPath  = [ 
-      "${config.home-manager.users.gw.home.homeDirectory}/.local/bin" 
+      "${config.home.homeDirectory}/.local/bin" 
     ];
+
+    stateVersion = "22.11";
   };
 }

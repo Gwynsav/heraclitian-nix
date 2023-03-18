@@ -38,9 +38,14 @@
 
     in {
       nixosConfigurations = {
-        sedentary = 
-          import ./systems/sedentary
+        interim = 
+          import ./systems/interim
           { inherit config nixpkgs overlays inputs impermanence home-manager; };
+      };
+      homeConfigurations = {
+        gw =
+          import ./users/gw
+          { inherit config nixpkgs overlays inputs impermanence home-manager system; };
       };
       sedentary = self.nixosConfigurations.sedentary.config.system.build.toplevel;
     };

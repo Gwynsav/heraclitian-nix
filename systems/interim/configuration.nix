@@ -6,16 +6,15 @@
 
 {
   imports = [
-    # Import the impermanence module.
+    # Import the shared system configuration.
     ( import ../shared/configuration.nix 
         { inherit config pkgs lib inputs impermanence; } )
 
     # Import other system configuration files.
     ./hardware-configuration.nix
-    ( import ./home { inherit config pkgs impermanence home-manager; } )
   ];
 
-  networking.hostName = "sedentary";
+  networking.hostName = "interim";
 
   # Boot Loader & Kernel
   # --------------------

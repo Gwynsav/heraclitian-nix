@@ -44,7 +44,7 @@
     mutableUsers = false;
     users = {
       root = {
-        initialPassword = "safefrfr";
+        initialHashedPassword = "$6$UJ5jklEtooADLwLu$SMbrr6iRDvORehscLxo6VC9rEkQ9voRiD.L3W8cE8DIJiFGQx/lfrNWWZOkw0d23bHFxG6aIKAVO5YHeXIwBa.";
       };
       gw = {
         initialPassword = "gwaaaaaa";
@@ -147,7 +147,7 @@
   environment.systemPackages = lib.attrValues {
     inherit (pkgs.stable)
       shotgun hacksaw xclip
-      libnotify pulseaudio virt-manager
+      libnotify pulseaudio virt-manager home-manager
       gnumake cmake gcc lua
       git wget unzip exa asciidoctor ffmpeg vim;
   } ++ [( lib.hiPrio pkgs.stable.procps )];
