@@ -47,7 +47,7 @@
         initialHashedPassword = "$6$UJ5jklEtooADLwLu$SMbrr6iRDvORehscLxo6VC9rEkQ9voRiD.L3W8cE8DIJiFGQx/lfrNWWZOkw0d23bHFxG6aIKAVO5YHeXIwBa.";
       };
       gw = {
-        initialPassword = "gwaaaaaa";
+        initialHashedPassword = "$6$nu5CpjtwSZpp9mj7$6N0/cUwUYGI8Qvc.toGOqREZ2Xlw82/HSGXvYat0nfdyrtf2xN25UMFOaqHgL/cx1EhDuZFjm6/O5gDfirlt8/";
         isNormalUser    = true;
         extraGroups     = [ 
           "wheel" "networkmanager" "audio" "video"
