@@ -8,10 +8,10 @@
 
   imports = [
     # Terminals
-    ( import ../shared/config/term/tym      { inherit pkgs; } )
+    ( import ../../shared/config/term/tym      { inherit pkgs; } )
 
     # Shells
-    ( import ../shared/config/shell/hilbish { inherit pkgs; } )
+    ( import ../../shared/config/shell/hilbish { inherit pkgs; } )
   ];
 
   gtk = {

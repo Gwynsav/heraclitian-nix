@@ -2,16 +2,19 @@
 # -- Ephemeral Root Configuration -- #
 # ---------------------------------- #
 
-{ config, pkgs, lib, inputs, overlays, impermanence, home-manager, ... }:
+{ config, pkgs, lib, inputs, impermanence, home-manager, ... }:
 
 {
   imports = [
+    # Import other system configuration files.
+    ./hardware-configuration.nix
+
     # Import the shared system configuration.
     ( import ../shared/configuration.nix 
         { inherit config pkgs lib inputs impermanence; } )
 
-    # Import other system configuration files.
-    ./hardware-configuration.nix
+    # Import home configuration.
+    ( import ./home { inherit config pkgs home-manager impermanence; } )
   ];
 
   networking.hostName = "interim";

@@ -37,9 +37,9 @@
         "${pkgs.phinger-cursors}/share/icons/phinger-cursors";
     };
     sessionVariables.XDG_DATA_HOME = 
-      "${config.home.homeDirectory}/.local/share";
+      "${config.home-manager.users.gw.home.homeDirectory}/.local/share";
     sessionPath  = [ 
-      "${config.home.homeDirectory}/.local/bin" 
+      "${config.home-manager.users.gw.home.homeDirectory}/.local/bin" 
     ];
 
     stateVersion = "22.11";

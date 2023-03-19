@@ -1,9 +1,14 @@
 { config, nixpkgs, overlays, inputs, impermanence, home-manager }: 
 
-with nixpkgs; lib.nixosSystem {
+nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs impermanence home-manager; };
   modules = [
-    { nixpkgs = { inherit config overlays; }; }
+    { 
+      nixpkgs = { 
+        overlays           = overlays; 
+        config.allowUnfree = true; 
+      }; 
+    }
     ./configuration.nix
   ];
 }
