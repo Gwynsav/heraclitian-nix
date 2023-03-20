@@ -11,6 +11,7 @@
     ( import ./config/browser/firefox { } )
     ( import ./config/browser/discord { } )
   ];
+  xdg.configFile.awesome.source = ./config/awesome;
 
   # Impermanence
   # ------------
