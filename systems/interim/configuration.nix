@@ -22,7 +22,7 @@
   # Boot Loader & Kernel
   # --------------------
   boot = {
-    kernelPackages = pkgs.unstable.linuxPackages_zen;
+    kernelPackages = pkgs.stable.linuxPackages_zen;
     kernelModules  = [];
     loader = {
       grub.useOSProber = true;
@@ -30,35 +30,35 @@
     };
   };
 
-  # # Drivers
-  # # -------
-  # services.xserver = {
-  #   videoDrivers = [ "nvidia" ];
-  #   dpi          = 96;
-  # };
-  # hardware.opengl = {
-  #   enable          = true;
-  #   driSupport      = true;
-  #   driSupport32Bit = true;
-  # };
-  #
-  # # Packages
-  # # --------
-  # environment = {
-  #   systemPackages = lib.attrValues {
-  #     inherit (pkgs.stable)
-  #       piper;
-  #
-  #     inherit (pkgs.unstable)
-  #       openrgb
-  #       heroic
-  #       steam
-  #       protonup-ng;
-  #   };
-  #   sessionVariables = {
-  #     STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
-  #       "/nix/persist/home/gw/.steam/root/compatibilitytools.d";
-  #   };
-  # };
+  # Drivers
+  # -------
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+    dpi          = 96;
+  };
+  hardware.opengl = {
+    enable          = true;
+    driSupport      = true;
+    driSupport32Bit = true;
+  };
+ 
+  # Packages
+  # --------
+  environment = {
+    systemPackages = lib.attrValues {
+      inherit (pkgs.stable)
+        piper;
+ 
+      inherit (pkgs.unstable)
+        openrgb
+        heroic
+        steam
+        protonup-ng;
+    };
+    sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
+        "/nix/persist/home/gw/.steam/root/compatibilitytools.d";
+    };
+  };
 }
 

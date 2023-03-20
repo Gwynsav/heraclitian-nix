@@ -1,9 +1,19 @@
 { config, pkgs, impermanence, ... }:
 
 {
+  # Config Files
+  # ------------
+  imports = [ 
+    # Impermanence import
+    impermanence.nixosModules.home-manager.impermanence 
+    
+    # Miscelaneous
+    ( import ./config/browser/firefox { } )
+    ( import ./config/browser/discord { } )
+  ];
+
   # Impermanence
-  # -----------
-  imports = [ impermanence.nixosModules.home-manager.impermanence ];
+  # ------------
   home.persistence."/nix/persist/home/gw" = {
     directories = [ 
       "Desktop" "Downloads" "Music" "Pictures"
