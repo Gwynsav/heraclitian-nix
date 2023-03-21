@@ -1,4 +1,8 @@
-{ config, pkgs, impermanence, home-manager, ... }:
+{ config, pkgs, lib, impermanence, home-manager, ... }:
+
+let
+  colors = import ../../shared/themes/fullerene.nix { };
+in
 
 {
   imports = [
@@ -9,8 +13,8 @@
     useGlobalPkgs = true;
     users.gw = { pkgs, ... }: {
       imports = [
-        ( import ../../shared/home.nix { inherit config pkgs impermanence; } )
-        ( import ./home.nix            { inherit config pkgs; } )
+        ( import ../../shared/home.nix { inherit config pkgs lib colors impermanence; } )
+        ( import ./home.nix            { inherit config pkgs lib colors; } )
       ];
     };
   };

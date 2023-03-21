@@ -1,17 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, colors, ... }:
 
 {
-  home = {
-    username      = "gw";
-    homeDirectory = "/home/gw";
-  };
-
   imports = [
     # Terminals
-    ( import ../../shared/config/term/tym      { inherit pkgs; } )
+    ( import ../../shared/config/term/tym      { inherit pkgs colors; } )
 
     # Shells
     ( import ../../shared/config/shell/hilbish { inherit pkgs; } )
+
+    # Editors
+    ( import ../../shared/config/editor/emacs  { inherit pkgs; } )
   ];
 
   gtk = {

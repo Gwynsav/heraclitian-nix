@@ -124,7 +124,7 @@ user.border_rad   = 0
 ---  light:
 ---    'gruvbox', 'solarized', 'plata'
 --- More themes can be added at `themes/palettes`. DOES NOT have a default.
-user.clr_palette  = "everblush"
+user.clr_palette  = "mar"
 --- GTK icon pack to use, comment for Papirus or name.
 -- user.icon_pack    = "Papirus"
 --- Fonts to be used.
@@ -149,7 +149,7 @@ user.awm_icon     = "nix"
 ---------------
 --- Directory to save screenshots to (when prompted to do so).
 --- Defaults to '~/Pictures/'
-user.scrnshot_dir = "/nix/persist/home/gw/Pictures/"
+-- user.scrnshot_dir = "/nix/persist/home/gw/Pictures/"
 
 --- Terminal scratchpad. Brought up with `mod + Ctrl + Return`.
 --- Horizontal screen percentage used as width. Defaults to 40.

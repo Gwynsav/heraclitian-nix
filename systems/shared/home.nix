@@ -1,6 +1,13 @@
-{ config, pkgs, impermanence, ... }:
+{ config, pkgs, lib, colors, impermanence, ... }:
 
 {
+  # User Setup
+  # ----------
+  home = {
+    username      = "gw";
+    homeDirectory = "/home/gw";
+  };
+
   # Config Files
   # ------------
   imports = [ 
@@ -10,6 +17,7 @@
     # Miscelaneous
     ( import ./config/browser/firefox { } )
     ( import ./config/browser/discord { } )
+    ( import ./config/utils/picom     { inherit colors; } )
   ];
   xdg.configFile.awesome.source = ./config/awesome;
 
@@ -17,12 +25,19 @@
   # ------------
   home.persistence."/nix/persist/home/gw" = {
     directories = [ 
+
+      # XDG User directories
       "Desktop" "Downloads" "Music" "Pictures"
-      ".local/share/keyrings" ".local/share/direnv"
+
+      # User program data and keyrings
+      ".local/share/keyrings"
+      ".local/share/direnv"
+      ".local/share/hilbish"
       {
         directory = ".local/share/Steam";
         method    = "symlink";
       }
+
     ];
     files = [
       ".screenrc"

@@ -14,7 +14,7 @@
         { inherit config pkgs lib inputs impermanence; } )
 
     # Import home configuration.
-    ( import ./home { inherit config pkgs home-manager impermanence; } )
+    ( import ./home { inherit config pkgs lib home-manager impermanence; } )
   ];
 
   networking.hostName = "interim";
@@ -22,8 +22,8 @@
   # Boot Loader & Kernel
   # --------------------
   boot = {
-    kernelPackages = pkgs.stable.linuxPackages_zen;
-    kernelModules  = [];
+    kernelPackages = pkgs.unstable.linuxPackages;
+    kernelModules  = [ "i2c-piix4" "i2c-dev" ];
     loader = {
       grub.useOSProber = true;
       timeout          = null;
@@ -57,7 +57,7 @@
     };
     sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
-        "/nix/persist/home/gw/.steam/root/compatibilitytools.d";
+        "/nix/persist/home/gw/.local/share/Steam/root/compatibilitytools.d";
     };
   };
 }
