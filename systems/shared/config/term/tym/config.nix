@@ -2,14 +2,14 @@
 # -- Lua terminal but not bloated -- #
 # ---------------------------------- #
 
-{ colors }:
+{ colors, fonts }:
 ''
   local tym = require('tym')
   tym.set_config({
     -- Basics
     ---------
     shell        = "hilbish",
-    font         = "IBM Plex Mono 10",
+    font         = "${fonts.mono} 10",
 
     -- Cursor
     ---------

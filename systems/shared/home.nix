@@ -1,4 +1,4 @@
-{ config, pkgs, lib, colors, impermanence, ... }:
+{ config, pkgs, lib, colors, fonts, impermanence, ... }:
 
 {
   # User Setup
@@ -13,11 +13,23 @@
   imports = [ 
     # Impermanence import
     impermanence.nixosModules.home-manager.impermanence 
+
+    # Music
+    ( import ./config/music/yt-dlp    { inherit pkgs config; } )
+    ( import ./config/music/mpd       { inherit pkgs config; } )
+    ( import ./config/music/ncmpcpp   { inherit pkgs config; } )
+
+    # TUI
+    ( import ./config/tui/htop        { inherit config; } )
+    ( import ./config/tui/lf          { } )
+    
+    # Utils
+    ( import ./config/utils/picom     { inherit colors; } )
+    ( import ./config/utils/zathura   { inherit colors fonts; } )
     
     # Miscelaneous
-    ( import ./config/browser/firefox { } )
-    ( import ./config/browser/discord { } )
-    ( import ./config/utils/picom     { inherit colors; } )
+    ( import ./config/browser/discord { inherit config colors fonts; } )
+    ( import ./config/xresources.nix  { inherit colors fonts; } )
   ];
   xdg.configFile.awesome.source = ./config/awesome;
 
@@ -25,7 +37,6 @@
   # ------------
   home.persistence."/nix/persist/home/gw" = {
     directories = [ 
-
       # XDG User directories
       "Desktop" "Downloads" "Music" "Pictures"
 
@@ -33,11 +44,23 @@
       ".local/share/keyrings"
       ".local/share/direnv"
       ".local/share/hilbish"
+
+      # Playlists and music state
+      ".local/share/mpd"
+      ".local/share/ncmpcpp"
+
+      # Persist Steam login, settings and installed games
+      # and compatibility tools.
       {
         directory = ".local/share/Steam";
         method    = "symlink";
       }
 
+      # Persist Discord login and settings
+      {
+        directory = ".config/discord";
+        method    = "symlink";
+      }
     ];
     files = [
       ".screenrc"
@@ -67,7 +90,7 @@
     sessionPath  = [ 
       "${config.home-manager.users.gw.home.homeDirectory}/.local/bin" 
     ];
-
+    # Home Manager release at time of installation.
     stateVersion = "22.11";
   };
 }

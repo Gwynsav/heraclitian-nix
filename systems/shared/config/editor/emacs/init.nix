@@ -1,4 +1,4 @@
-_: 
+{ fonts }: 
 ''
 ;; ------------------------- ;;
 ;; -- basic configuration -- ;;
@@ -16,7 +16,7 @@ _:
 (menu-bar-mode -1)
 (tooltip-mode -1)
 (set-fringe-mode 10)
-(set-face-attribute 'default nil :font "IBM Plex Mono" :height 90)
+(set-face-attribute 'default nil :font "${fonts.mono}" :height 90)
 
 ;; Put your garbage elsewhere, Emacs.
 (setq backup-directory-alist

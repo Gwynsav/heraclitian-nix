@@ -172,6 +172,7 @@
         inherit (pkgs.luaPackages) lgi ldbus luadbi-mysql luaposix;
       };
     };
+    excludePackages = [ pkgs.xterm ];
   };
 
   # Qt / GTK

@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, fonts }:
 
 {
   programs.emacs = {
@@ -6,6 +6,6 @@
     package = pkgs.unstable.emacs;
   };
   home.file = {
-    ".config/emacs/init.el".text = import ./init.nix { };
+    ".config/emacs/init.el".text = import ./init.nix { inherit fonts; };
   };
 }

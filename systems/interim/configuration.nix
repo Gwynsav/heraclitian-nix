@@ -22,7 +22,7 @@
   # Boot Loader & Kernel
   # --------------------
   boot = {
-    kernelPackages = pkgs.unstable.linuxPackages;
+    kernelPackages = pkgs.unstable.linuxPackages_latest;
     kernelModules  = [ "i2c-piix4" "i2c-dev" ];
     loader = {
       grub.useOSProber = true;

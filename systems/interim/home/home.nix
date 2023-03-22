@@ -1,15 +1,18 @@
-{ config, pkgs, lib, colors, ... }:
+{ config, pkgs, lib, colors, fonts, ... }:
 
 {
   imports = [
     # Terminals
-    ( import ../../shared/config/term/tym      { inherit pkgs colors; } )
+    ( import ../../shared/config/term/tym        { inherit pkgs colors fonts; } )
 
     # Shells
-    ( import ../../shared/config/shell/hilbish { inherit pkgs; } )
+    ( import ../../shared/config/shell/hilbish   { inherit pkgs; } )
 
     # Editors
-    ( import ../../shared/config/editor/emacs  { inherit pkgs; } )
+    ( import ../../shared/config/editor/emacs    { inherit pkgs fonts; } )
+
+    # Browsers
+    ( import ../../shared/config/browser/firefox { inherit colors fonts; } )
   ];
 
   gtk = {

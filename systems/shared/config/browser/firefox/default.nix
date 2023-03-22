@@ -1,4 +1,4 @@
-{ ... }:
+{ colors, fonts }:
 
 {
   programs.firefox = {
@@ -7,7 +7,7 @@
     # The rest are mostly privacy/security focused settings.
     profiles.gw = {
       id          = 0;
-      # userChrome  = import ./userChrome.nix { inherit colors; };
+      userChrome  = import ./userChrome.nix { inherit colors fonts; };
       extraConfig = ''
         user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
         user_pref("layers.acceleration.force-enabled", true);

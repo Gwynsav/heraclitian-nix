@@ -2,6 +2,7 @@
 
 let
   colors = import ../../shared/themes/fullerene.nix { };
+  fonts  = import ../../shared/fonts.nix { inherit config; };
 in
 
 {
@@ -13,8 +14,8 @@ in
     useGlobalPkgs = true;
     users.gw = { pkgs, ... }: {
       imports = [
-        ( import ../../shared/home.nix { inherit config pkgs lib colors impermanence; } )
-        ( import ./home.nix            { inherit config pkgs lib colors; } )
+        ( import ../../shared/home.nix { inherit config pkgs lib colors fonts impermanence; } )
+        ( import ./home.nix            { inherit config pkgs lib colors fonts; } )
       ];
     };
   };
