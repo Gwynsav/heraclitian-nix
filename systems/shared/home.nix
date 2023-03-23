@@ -6,6 +6,12 @@
   home = {
     username      = "gw";
     homeDirectory = "/home/gw";
+    packages = lib.attrValues {
+      inherit (pkgs.stable)
+        tageditor
+        shotgun hacksaw xclip
+        libnotify pulseaudio; 
+    };
   };
 
   # Config Files
@@ -37,8 +43,12 @@
   # ------------
   home.persistence."/nix/persist/home/gw" = {
     directories = [ 
-      # XDG User directories
-      "Desktop" "Downloads" "Music" "Pictures"
+      # XDG User directories. Makes declaring `xdg.userDirs.*`
+      # pretty pointless.
+      "Desktop" "Documents" "Music" "Pictures"
+      # Only persist downloaded files explicitly wanted
+      # for preservation
+      "Downloads/archived" 
 
       # User program data and keyrings
       ".local/share/keyrings"

@@ -1,6 +1,13 @@
 { config, pkgs, lib, colors, fonts, ... }:
 
 {
+  home.packages = lib.attrValues {
+    inherit (pkgs.stable)
+      openrgb piper;
+    inherit (pkgs.unstable)
+      protonup-ng heroic steam;
+  };
+  
   imports = [
     # Terminals
     ( import ../../shared/config/term/tym        { inherit pkgs colors fonts; } )

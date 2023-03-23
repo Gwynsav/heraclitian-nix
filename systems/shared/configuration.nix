@@ -146,8 +146,7 @@
   # --------
   environment.systemPackages = lib.attrValues {
     inherit (pkgs.stable)
-      shotgun hacksaw xclip
-      libnotify pulseaudio virt-manager home-manager
+      virt-manager home-manager
       gnumake cmake gcc lua
       git wget unzip exa asciidoctor ffmpeg vim;
   } ++ [( lib.hiPrio pkgs.stable.procps )];
@@ -169,7 +168,8 @@
     windowManager.awesome = {
       enable     = true;
       luaModules = lib.attrValues {
-        inherit (pkgs.luaPackages) lgi ldbus luadbi-mysql luaposix;
+        inherit (pkgs.unstable.luaPackages)
+          lgi ldbus luadbi-mysql luaposix;
       };
     };
     excludePackages = [ pkgs.xterm ];

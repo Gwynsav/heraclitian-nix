@@ -120,11 +120,11 @@ user.border_rad   = 0
 ----------
 --- Supported themes:
 ---  dark:
----    'everblush', 'everforest', 'tokyonight', 'mar' 
+---    'everblush', 'everforest', 'tokyonight', 'fullerene' 
 ---  light:
 ---    'gruvbox', 'solarized', 'plata'
 --- More themes can be added at `themes/palettes`. DOES NOT have a default.
-user.clr_palette  = "mar"
+user.clr_palette  = "fullerene"
 --- GTK icon pack to use, comment for Papirus or name.
 -- user.icon_pack    = "Papirus"
 --- Fonts to be used.
@@ -137,7 +137,7 @@ user.clr_palette  = "mar"
 --- Your *amazing* profile picture. Path or comment for default.
 -- user.avatar       = os.getenv("HOME") .. "/Pictures/avatars/serasAlt.jpg"
 --- Your wallpaper path. Path, or comment for colorscheme default.
--- user.wall         = os.getenv("HOME") .. "/Pictures/walls/everblush/Smily.jpg"
+user.wall         = os.getenv("HOME") .. "/Pictures/walls/urban/NewYork.jpg"
 --- Music player fallback background. Path, or comment for colorscheme default.
 -- user.player_bg    = os.getenv("HOME") .. "/Pictures/walls/landscape/Somewhere.png"
 --- AwesomeWM icon to be used (comment for default awesome icon): 

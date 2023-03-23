@@ -5,19 +5,20 @@
 { config, pkgs, lib, inputs, impermanence, home-manager, ... }:
 
 {
+  networking.hostName = "interim";
+
   imports = [
     # Import other system configuration files.
     ./hardware-configuration.nix
 
     # Import the shared system configuration.
     ( import ../shared/configuration.nix 
-        { inherit config pkgs lib inputs impermanence; } )
+      { inherit config pkgs lib inputs impermanence; } )
 
     # Import home configuration.
-    ( import ./home { inherit config pkgs lib home-manager impermanence; } )
+    ( import ./home
+      { inherit config pkgs lib home-manager impermanence; } )
   ];
-
-  networking.hostName = "interim";
 
   # Boot Loader & Kernel
   # --------------------
@@ -42,23 +43,11 @@
     driSupport32Bit = true;
   };
  
-  # Packages
-  # --------
-  environment = {
-    systemPackages = lib.attrValues {
-      inherit (pkgs.stable)
-        piper;
- 
-      inherit (pkgs.unstable)
-        openrgb
-        heroic
-        steam
-        protonup-ng;
-    };
-    sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
-        "/nix/persist/home/gw/.local/share/Steam/root/compatibilitytools.d";
-    };
+  # Gayming
+  # -------
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
+      "/nix/persist/home/gw/.local/share/Steam/root/compatibilitytools.d";
   };
 }
 
