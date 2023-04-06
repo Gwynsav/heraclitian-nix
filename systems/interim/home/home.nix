@@ -5,21 +5,28 @@
     inherit (pkgs.stable)
       openrgb piper;
     inherit (pkgs.unstable)
-      protonup-ng heroic steam;
+      protonup-ng heroic;
   };
   
   imports = [
+    # WM
+    ( import ../../shared/config/wm/awesome        { } )
+    # ( import ../../shared/config/wm/openbox        { inherit pkgs lib; } )
+    # ( import ../../shared/config/wm/xmonad         { inherit pkgs lib colors; } )
+    
     # Terminals
-    ( import ../../shared/config/term/tym        { inherit pkgs colors fonts; } )
+    ( import ../../shared/config/term/tym          { inherit pkgs colors fonts; } )
 
     # Shells
-    ( import ../../shared/config/shell/hilbish   { inherit pkgs; } )
+    ( import ../../shared/config/shell/hilbish     { inherit pkgs; } )
 
     # Editors
-    ( import ../../shared/config/editor/emacs    { inherit pkgs fonts; } )
+    ( import ../../shared/config/editor/emacs      { inherit pkgs fonts; } )
+    ( import ../../shared/config/editor/neovim     { inherit pkgs; } )
 
     # Browsers
-    ( import ../../shared/config/browser/firefox { inherit colors fonts; } )
+    ( import ../../shared/config/browser/firefox   { inherit colors fonts; } )
+    ( import ../../shared/config/browser/librewolf { } )
   ];
 
   gtk = {

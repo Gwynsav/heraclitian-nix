@@ -36,18 +36,34 @@
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     dpi          = 96;
+    # windowManager.xmonad = {
+    #   enable                 = true;
+    #   enableContribAndExtras = true;
+    # };
+    # windowManager.openbox.enable = true;
+    windowManager.awesome = {
+      enable     = true;
+      luaModules = lib.attrValues {
+        inherit (pkgs.unstable.luaPackages)
+          lgi ldbus luadbi-mysql luaposix;
+      };
+    };
   };
-  hardware.opengl = {
-    enable          = true;
-    driSupport      = true;
-    driSupport32Bit = true;
+  hardware = {
+    opengl = {
+      enable          = true;
+      driSupport      = true;
+      driSupport32Bit = true;
+    };
+    steam-hardware.enable = true;
   };
  
   # Gayming
   # -------
+  programs.steam.enable = true;
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
-      "/nix/persist/home/gw/.local/share/Steam/root/compatibilitytools.d";
+      "\$HOME/.local/share/Steam/root/compatibilitytools.d";
   };
 }
 

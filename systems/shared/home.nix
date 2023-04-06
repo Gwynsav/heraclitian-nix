@@ -8,8 +8,13 @@
     homeDirectory = "/home/gw";
     packages = lib.attrValues {
       inherit (pkgs.stable)
-        tageditor
+        # editing/recording
+        gimp inkscape obs-studio
+        # viewing and modifying
+        tageditor gpick nsxiv
+        # screenshooting
         shotgun hacksaw xclip
+        # notifications/audio libs
         libnotify pulseaudio; 
     };
   };
@@ -37,7 +42,6 @@
     ( import ./config/browser/discord { inherit config colors fonts; } )
     ( import ./config/xresources.nix  { inherit colors fonts; } )
   ];
-  xdg.configFile.awesome.source = ./config/awesome;
 
   # Impermanence
   # ------------
@@ -45,7 +49,7 @@
     directories = [ 
       # XDG User directories. Makes declaring `xdg.userDirs.*`
       # pretty pointless.
-      "Desktop" "Documents" "Music" "Pictures"
+      "Desktop" "Documents" "Music" "Pictures" "Videos"
       # Only persist downloaded files explicitly wanted
       # for preservation
       "Downloads/archived" 
@@ -59,12 +63,12 @@
       ".local/share/mpd"
       ".local/share/ncmpcpp"
 
+      # Recording settings and setup
+      ".config/obs-studio/basic/profiles"
+
       # Persist Steam login, settings and installed games
-      # and compatibility tools.
-      {
-        directory = ".local/share/Steam";
-        method    = "symlink";
-      }
+      # and compatibility tools. Steam doesn't like symlinks.
+      ".local/share/Steam"
 
       # Persist Discord login and settings
       {

@@ -149,6 +149,8 @@
       virt-manager home-manager
       gnumake cmake gcc lua
       git wget unzip exa asciidoctor ffmpeg vim;
+    inherit (pkgs.unstable.haskell.compiler.native-bignum)
+      ghcHEAD;
   } ++ [( lib.hiPrio pkgs.stable.procps )];
 
   # X Server
@@ -161,17 +163,7 @@
       enable             = true;
       mouse.accelProfile = "flat";
     };
-    displayManager = {
-      sddm.enable    = true;
-      defaultSession = "none+awesome";
-    };
-    windowManager.awesome = {
-      enable     = true;
-      luaModules = lib.attrValues {
-        inherit (pkgs.unstable.luaPackages)
-          lgi ldbus luadbi-mysql luaposix;
-      };
-    };
+    displayManager.sddm.enable = true;
     excludePackages = [ pkgs.xterm ];
   };
 
