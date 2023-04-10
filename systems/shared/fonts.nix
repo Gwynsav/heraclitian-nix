@@ -7,4 +7,5 @@
   sans  = (builtins.head config.fonts.fontconfig.defaultFonts.sansSerif);
   mono  = (builtins.head config.fonts.fontconfig.defaultFonts.monospace);
   serif = (builtins.head config.fonts.fontconfig.defaultFonts.serif);
+  icons = "Material Icons";
 }

@@ -1,25 +1,26 @@
 _:''
 -- Basics
 ---------
-vim.o.number       = true
-vim.wo.cursorline  = true
-vim.o.showmatch    = true
-vim.o.hlsearch     = true
-vim.o.incsearch    = true
-vim.o.clipboard    = 'unnamedplus'
-vim.o.syntax       = 'on'
+vim.o.number        = true
+vim.wo.cursorline   = true
+vim.o.showmatch     = true
+vim.o.hlsearch      = true
+vim.o.incsearch     = true
+vim.o.clipboard     = 'unnamedplus'
+vim.o.syntax        = 'on'
+vim.g.termguicolors = true
 
 -- Set tabbing to 3 spaces:
-vim.o.tabstop      = 3
-vim.o.shiftwidth   = 3
-vim.o.softtabstop  = 0
-vim.o.expandtab    = true
-vim.bo.smartindent = true
-vim.bo.autoindent  = true
+vim.o.tabstop       = 3
+vim.o.shiftwidth    = 3
+vim.o.softtabstop   = 0
+vim.o.expandtab     = true
+vim.bo.smartindent  = true
+vim.bo.autoindent   = true
 
 -- Shut up, nvim
-vim.o.backup       = false
-vim.bo.swapfile    = false
+vim.o.backup        = false
+vim.bo.swapfile     = false
 
 -- Plugin Configuration
 -----------------------

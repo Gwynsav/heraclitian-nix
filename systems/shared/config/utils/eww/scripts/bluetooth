@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+bluetooth="$(bluetoothctl show | grep -w Powered:)"
+
+case "$1" in
+   "toggle")
+      # Toggles bluetooth power.
+      [ "${bluetooth#*yes}" != "$bluetooth" ] \
+         && power="off" || power="on"
+      bluetoothctl power $power ;;
+   "verbose") 
+      # Shows `ON` if bluetooth is on, or `OFF` if it isn't.
+      [ "${bluetooth#*yes}" != "$bluetooth" ] \
+         && icon="ON" || icon="OFF"
+      echo "$icon" ;;
+   *) 
+      # Shows a `bluetooth on` icon if bluetooth is on.
+      [ "${bluetooth#*yes}" != "$bluetooth" ] \
+         && icon="" || icon=""
+      echo "$icon" ;;
+esac

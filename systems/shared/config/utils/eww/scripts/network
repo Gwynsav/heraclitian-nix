@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+network="$(nmcli networking connectivity check)"
+
+case "$1" in
+   "toggle")
+      # Toggle networking on if connectivity is explicitly "none",
+      # or off in any other case.
+      [ "${network#*none}" == "$network" ] && power="off" || power="on"
+      nmcli networking $power ;;
+   "ssid")
+      # If a network connection is present, output its SSID, else
+      # output `Disconnected`.
+      [ "${network#*none}" != "$network" ] && ssid="Disconnected" \
+         || ssid="$(nmcli device show | grep -w 'GENERAL.CONNECTION' | grep -v '\-\-')"
+      echo "${ssid##* }" ;;
+   *)
+      # If networking connectivity is "full", display a "connected"
+      # icon, show a "disconnected" one otherwise.
+      [ "${network#*full}" != "$network" ] && icon="" || icon=""
+      echo $icon ;;
+esac

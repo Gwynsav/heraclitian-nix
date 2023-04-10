@@ -1,4 +1,4 @@
-_:
+{ config }:
 ''
   -- Imports
   ----------
@@ -42,7 +42,10 @@ _:
   hilbish.alias("ls",   "exa -l")
   hilbish.alias("vi",   "nvim")
   hilbish.alias("vim",  "nvim")
-  hilbish.alias("nix-pkgs", "nix --extra-experimental-features 'nix-command flakes' search nixpkgs")
+  hilbish.alias("nix-test", 
+                "sudo nixos-rebuild test --flake '/etc/nixos?submodules=1#${config.networking.hostName}' --fast")
+  hilbish.alias("nix-switch", 
+                "sudo nixos-rebuild switch --flake '/etc/nixos?submodules=1#${config.networking.hostName}'")
 
   -- Misc
   -------

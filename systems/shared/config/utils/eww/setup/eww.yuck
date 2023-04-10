@@ -1,0 +1,17 @@
+;; Polling Variables
+;; -----------------
+;; Audio
+(defpoll volume          :interval "3s"  "~/.local/bin/volume")
+(defpoll volumeStatus    :interval "3s"  "~/.local/bin/volume state")
+
+;; Networking
+(defpoll network         :interval "12s" "~/.local/bin/network ssid")
+(defpoll networkStatus   :interval "12s" "~/.local/bin/network")
+
+;; Bluetooth
+(defpoll bluetooth       :interval "9s"  "~/.local/bin/bluetooth verbose")
+(defpoll bluetoothStatus :interval "9s"  "~/.local/bin/bluetooth")
+
+;; Imports
+;; -------
+(include "./horizontal/bar/bar.yuck")

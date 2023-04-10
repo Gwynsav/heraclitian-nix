@@ -35,6 +35,9 @@
       nvim-colorizer-lua
       nvim-tree-lua
       nvim-web-devicons
+
+      # Colorscheme
+      vim-colors-solarized
     ];
   };
 }

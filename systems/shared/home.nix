@@ -7,7 +7,7 @@
     username      = "gw";
     homeDirectory = "/home/gw";
     packages = lib.attrValues {
-      inherit (pkgs.stable)
+      inherit (pkgs)
         # editing/recording
         gimp inkscape obs-studio
         # viewing and modifying
@@ -16,6 +16,10 @@
         shotgun hacksaw xclip
         # notifications/audio libs
         libnotify pulseaudio; 
+      inherit (pkgs.gnome)
+        gucharmap;
+      inherit (pkgs.cinnamon)
+        nemo;
     };
   };
 
@@ -69,6 +73,11 @@
       # Persist Steam login, settings and installed games
       # and compatibility tools. Steam doesn't like symlinks.
       ".local/share/Steam"
+      # And also Heroic GL stuff (which also complains
+      # about symlinks).
+      ".config/heroic"
+      ".config/legendary"
+      "Downloads/games"
 
       # Persist Discord login and settings
       {
@@ -94,6 +103,10 @@
       };
       ".local/bin/panes" = {
          text       = import ./bin/panes.nix {};
+         executable = true;
+      };
+      ".local/bin/blast" = {
+         text       = import ./bin/blast.nix {};
          executable = true;
       };
       ".icons/default".source =

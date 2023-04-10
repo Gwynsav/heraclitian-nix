@@ -36,18 +36,17 @@
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     dpi          = 96;
-    # windowManager.xmonad = {
-    #   enable                 = true;
-    #   enableContribAndExtras = true;
-    # };
-    # windowManager.openbox.enable = true;
-    windowManager.awesome = {
-      enable     = true;
-      luaModules = lib.attrValues {
-        inherit (pkgs.unstable.luaPackages)
-          lgi ldbus luadbi-mysql luaposix;
-      };
+    windowManager.xmonad = {
+      enable                 = true;
+      enableContribAndExtras = true;
     };
+    # windowManager.awesome = {
+    #   enable     = true;
+    #   luaModules = lib.attrValues {
+    #     inherit (pkgs.unstable.luaPackages)
+    #       lgi ldbus luadbi-mysql luaposix;
+    #   };
+    # };
   };
   hardware = {
     opengl = {
