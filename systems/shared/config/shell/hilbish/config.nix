@@ -40,8 +40,6 @@
   ----------
   hilbish.alias("sudo", "doas")
   hilbish.alias("ls",   "exa -l")
-  hilbish.alias("vi",   "nvim")
-  hilbish.alias("vim",  "nvim")
   hilbish.alias("nix-test", 
                 "sudo nixos-rebuild test --flake '/etc/nixos?submodules=1#${config.networking.hostName}' --fast")
   hilbish.alias("nix-switch", 
@@ -53,8 +51,4 @@
   hilbish.opts.motd     = false
   hilbish.runnerMode("hybridRev")
   hilbish.prependPath("~/.local/bin/")
-
-  -- Autorun
-  ----------
-  hilbish.run("fetch")
 ''

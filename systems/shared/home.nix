@@ -97,16 +97,16 @@
   programs.home-manager.enable = true;
   home = {
     file = {
-      ".local/bin/fetch" = {
-         text       = import ./bin/fetch.nix {};
-         executable = true;
-      };
-      ".local/bin/panes" = {
-         text       = import ./bin/panes.nix {};
+      ".local/bin/run" = {
+         text       = import ./bin/run.nix {};
          executable = true;
       };
       ".local/bin/blast" = {
          text       = import ./bin/blast.nix {};
+         executable = true;
+      };
+      ".local/bin/panes" = {
+         text       = import ./bin/panes.nix {};
          executable = true;
       };
       ".icons/default".source =

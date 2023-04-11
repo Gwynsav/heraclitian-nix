@@ -2,6 +2,7 @@
 ''
 module MyColor
 ( myColor
+, myWall
 ) where
 
 import Data.Map as M
@@ -30,4 +31,7 @@ colors =
   ]
 
 myColor key = M.findWithDefault "#ff0000" key (fromList colors)
+
+myWall :: String
+myWall = "${colors.wall}"
 ''

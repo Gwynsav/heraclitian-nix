@@ -25,19 +25,23 @@
         ./setup/horizontal/bar/bar.scss;
 
       # Scripts
-      ".local/bin/volume" = {
-        source     = ./scripts/volume;
-        executable = true;
-      };
-      ".local/bin/network" = {
-        source     = ./scripts/network;
-        executable = true;
-      };
-      ".local/bin/bluetooth" = {
+      ".config/eww/bin/bluetooth" = {
         source     = ./scripts/bluetooth;
         executable = true;
       };
-      ".local/bin/workspace" = {
+      ".config/eww/bin/network" = {
+        source     = ./scripts/network;
+        executable = true;
+      };
+      ".config/eww/bin/volume" = {
+        source     = ./scripts/volume;
+        executable = true;
+      };
+      ".config/eww/bin/widget" = {
+        source     = ./scripts/widget;
+        executable = true;
+      };
+      ".config/eww/bin/workspace" = {
         source     = ./scripts/workspace;
         executable = true;
       };

@@ -1,6 +1,6 @@
 ;; Horizontal Bar
 ;; --------------
-(defwindow hBar
+(defwindow bar
    :geometry (geometry :anchor "bottom center"
                        :width "100%" :height "40px")
    :reserve (struts :distance "40px" :side "bottom")
@@ -11,16 +11,21 @@
    (centerbox :class "bar" :orientation "h" :valign "center"
       (start) (center) (end)))
 
-(defvar barVisible true)
+(defvar bar true)
 
 ;; Widgets
 ;; -------
 (defwidget start []
    (box :halign "start" :space-evenly false :spacing 24
-      (label :text "lmao")
+      (eventbox :onclick "${EWW_CONFIG_DIR}/bin/widget dashboard" 
+         (box :class "barDashboard" 
+              :space-evenly false :spacing 6
+            (label :class "barDashboardIcon" 
+                   :text "")
+            (label :text "Dashboard")))
       (box :class "workspaces" :valign "center"
          (literal :content wsScript))))
-(deflisten wsScript "~/.local/bin/workspace")
+(deflisten wsScript "~/.config/eww/bin/workspace")
 
 (defwidget center []
    (box :halign "center"
@@ -29,20 +34,23 @@
 
 (defwidget end []
    (box :halign "end" :space-evenly false :spacing 24 
-      (box :class "barBluetooth" :space-evenly false :spacing 6
-         (button :class "barBluetoothIcon" 
-                 :onclick "~/.local/bin/bluetooth toggle" bluetoothStatus)
-         (label  :class "barBluetoothVerbose" :text bluetooth))
-      (box :class "barNetwork" :space-evenly false :spacing 6
-         (button :class "barNetworkIcon" 
-                 :onclick "~/.local/bin/network toggle"   networkStatus)
-         (label  :class "barNetworkSSID" :text network))
-      (box :class "barVolume" :space-evenly false :spacing 6
-         (button :class "barVolumeIcon"  
-                 :onclick "~/.local/bin/volume toggle"    volumeStatus)
-         (label  :class "barVolumeLevel" :text volume))
+      (eventbox :onclick "${EWW_CONFIG_DIR}/bin/bluetooth toggle" 
+         (box :class "barBluetooth" :space-evenly false :spacing 6
+            (label :class "barBluetoothIcon" 
+                   :text bluetoothStatus)
+            (label :text bluetooth)))
+      (eventbox :onclick "${EWW_CONFIG_DIR}/bin/network toggle" 
+         (box :class "barNetwork" :space-evenly false :spacing 6
+            (label :class "barNetworkIcon" 
+                   :text networkStatus)
+            (label :text network)))
+      (eventbox :onclick "${EWW_CONFIG_DIR}/bin/volume toggle" 
+         (box :class "barVolume" :space-evenly false :spacing 6
+            (label :class "barVolumeIcon"  
+                   :text volumeStatus)
+            (label :text volume)))
       (label :class "barClock" :text fullTime)))
 
 ;; Polling Variables
 ;; -----------------
-(defpoll fullTime :interval "1s" "date +%H:%M:%S")
+(defpoll fullTime :interval "1s" :run-while bar "date +%H:%M:%S")

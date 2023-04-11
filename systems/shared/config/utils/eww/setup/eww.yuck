@@ -1,16 +1,16 @@
 ;; Polling Variables
 ;; -----------------
 ;; Audio
-(defpoll volume          :interval "3s"  "~/.local/bin/volume")
-(defpoll volumeStatus    :interval "3s"  "~/.local/bin/volume state")
+(defpoll volume          :interval "3s"  "~/.config/eww/bin/volume")
+(defpoll volumeStatus    :interval "3s"  "~/.config/eww/bin/volume state")
 
 ;; Networking
-(defpoll network         :interval "12s" "~/.local/bin/network ssid")
-(defpoll networkStatus   :interval "12s" "~/.local/bin/network")
+(defpoll network         :interval "12s" "~/.config/eww/bin/network ssid")
+(defpoll networkStatus   :interval "12s" "~/.config/eww/bin/network")
 
 ;; Bluetooth
-(defpoll bluetooth       :interval "9s"  "~/.local/bin/bluetooth verbose")
-(defpoll bluetoothStatus :interval "9s"  "~/.local/bin/bluetooth")
+(defpoll bluetooth       :interval "9s"  "~/.config/eww/bin/bluetooth verbose")
+(defpoll bluetoothStatus :interval "9s"  "~/.config/eww/bin/bluetooth")
 
 ;; Imports
 ;; -------

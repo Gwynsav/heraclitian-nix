@@ -1,7 +1,7 @@
 { config, pkgs, lib, impermanence, home-manager, ... }:
 
 let
-  colors = import ../../shared/themes/solarized.nix { };
+  colors = import ../../shared/themes/solarized_dark { };
   fonts  = import ../../shared/fonts.nix { inherit config; };
 in
 

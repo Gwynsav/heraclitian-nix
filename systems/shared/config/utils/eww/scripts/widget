@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# This function can toggle an eww widget to be visible or hidden,
+# for as long as a boolean variable with the same name as the window
+# exists.
+toggle() {
+   if [ "$(eww get $1)" = "false" ]; then
+      eww open $1;
+      eww update $1="true" &
+   else
+      eww close $1;
+      eww update $1="false" &
+   fi
+}
+
+case "$1" in
+   # The script is hard-coded to work only for windows that are
+   # known to exist, and will throw an error notification if used
+   # to open a window that isn't listed below.
+   "bar")       toggle bar ;;
+   "dashboard") toggle dashboard ;;
+
+   *) notify-send "Widgets" \
+        "Attempt to toggle an inexistent widget." ;;
+esac

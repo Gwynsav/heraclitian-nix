@@ -41,5 +41,7 @@ myStartupHook = do
   -- For some reason XMonad.Util.Cursor sets the cursor to the default 
   -- Adwaita one. For that reason I won't be using it.
   spawnOnce "xsetroot -cursor_name left_ptr &"
-  spawnOnce "hsetroot -cover ~/Pictures/walls/solarized/dNdMedium.png &"
-  spawnOnce "eww open hBar &"
+  spawnOnce wallpaper
+  spawnOnce "eww open bar &"
+      where
+          wallpaper = "hsetroot -cover " ++ myWall ++ " &"

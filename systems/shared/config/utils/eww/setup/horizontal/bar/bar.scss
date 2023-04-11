@@ -8,7 +8,8 @@
 }
 
 // General
-.barVolumeIcon, .barNetworkIcon, .barBluetoothIcon {
+.barVolumeIcon, .barNetworkIcon, 
+.barBluetoothIcon, .barDashboardIcon {
    font-family: $icons;
    font-size:   1.2rem;
 }
@@ -37,7 +38,7 @@
 // Workspaces Widget
 .ws {
    .inactive {
-      color:       $lbg;
+      color:       $blk;
    }
    .occupied {
       color:       $gry;
@@ -49,10 +50,17 @@
    }
 }
 
+// Application Search button.
 .barRofi {
    color:            $wht;
    background-color: $nbg;
    border-radius:    1rem;
-   margin:           0.6rem 0 0.6rem 0;
    padding:          0 1.2rem 0 1.2rem;
+   margin:           0.6rem 0 0.6rem 0;
+}
+
+// Dashboard Button.
+.barDashboard {
+   color:       $cya;
+   font-weight: bold;
 }

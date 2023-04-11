@@ -34,8 +34,10 @@
   # Drivers
   # -------
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
-    dpi          = 96;
+    videoDrivers  = [ "nvidia" ];
+    deviceSection = ''
+      Option "Coolbits" "12"
+    '';
     windowManager.xmonad = {
       enable                 = true;
       enableContribAndExtras = true;
@@ -47,6 +49,7 @@
     #       lgi ldbus luadbi-mysql luaposix;
     #   };
     # };
+    dpi = 96;
   };
   hardware = {
     opengl = {

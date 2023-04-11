@@ -14,7 +14,11 @@ import XMonad.Layout.ToggleLayouts (ToggleLayout(..))
 import XMonad.Util.Run             (safeSpawn, unsafeSpawn)
 import XMonad.Util.Ungrab
 
-myTerm = "tym"
+myTerm     = "tym"
+myTop      = myTerm ++ " -e htop"
+myTUIFiles = myTerm ++ " -e lf"
+myGUIFiles = "nemo"
+myLauncher = "rofi -show drun"
 
 -- Bindings
 -----------
@@ -31,8 +35,11 @@ myUnbinds =
 
 myRebinds = 
     [ -- Utilities
-      ("M-<Return>"  , spawn myTerm)                                       -- Opens a terminal
-    , ("M-p"         , spawn "rofi -show drun")                            -- Open launcher
+      ("M-<Return>"  , unsafeSpawn myTerm)                                 -- Opens a terminal
+    , ("M-<Esc>"     , unsafeSpawn myTop)                                  -- Open top
+    , ("M-e"         , unsafeSpawn myTUIFiles)                             -- Open TUI file manager
+    , ("M-S-e"       , unsafeSpawn myGUIFiles)                             -- Open GUI file manager
+    , ("M-p"         , unsafeSpawn myLauncher)                             -- Open launcher
     -- Window
     , ("M-q"         , kill)                                               -- Kills a client
     , ("M-f"         , sendMessage $ Toggle "Full")                        -- Fullscreens window
@@ -41,9 +48,11 @@ myRebinds =
     , ("M-S-l"       , sendMessage MirrorExpand)                           -- Expand tiled window
     , ("M-<Tab>"     , dwmpromote)                                         -- Swap with master
     -- Miscelaneous
-    , ("<Print>"     , unGrab *> spawn "~/.local/bin/blast sel")           -- Selection screenshot
-    , ("M-<Print>"   , spawn "~/.local/bin/blast scr")                     -- Fullscreen screenshot
-    , ("M-S-<Print>" , spawn "~/.local/bin/blast del")                     -- Delayed (3s) screenshot
+    , ("<Print>"     , unGrab *> unsafeSpawn "~/.local/bin/blast sel")     -- Selection screenshot
+    , ("M-<Print>"   , unsafeSpawn "~/.local/bin/blast scr")               -- Fullscreen screenshot
+    , ("M-S-<Print>" , unsafeSpawn "~/.local/bin/blast del")               -- Delayed (3s) screenshot
+    -- EWW
+    , ("M-b"         , unsafeSpawn "~/.config/eww/bin/widget bar")         -- Toggles bar visibility
     -- XMonad
     , ("M-C-r"       , unsafeSpawn "xmonad --recompile; xmonad --restart") -- Reloads Xmonad
     ]
