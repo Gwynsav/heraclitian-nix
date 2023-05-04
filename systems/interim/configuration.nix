@@ -38,17 +38,24 @@
     deviceSection = ''
       Option "Coolbits" "12"
     '';
-    windowManager.xmonad = {
-      enable                 = true;
-      enableContribAndExtras = true;
-    };
-    # windowManager.awesome = {
-    #   enable     = true;
-    #   luaModules = lib.attrValues {
-    #     inherit (pkgs.unstable.luaPackages)
-    #       lgi ldbus luadbi-mysql luaposix;
-    #   };
+    # windowManager.xmonad = {
+    #   enable                 = true;
+    #   enableContribAndExtras = true;
     # };
+    windowManager.awesome = {
+      enable     = true;
+      luaModules = lib.attrValues {
+        inherit (pkgs.unstable.luaPackages)
+          lgi ldbus luadbi-mysql luaposix;
+      };
+    };
+    displayManager = {
+      defaultSession = "none+awesome";
+      autoLogin = {
+        enable = true;
+        user   = "gw";
+      };
+    };
     dpi = 96;
   };
   hardware = {

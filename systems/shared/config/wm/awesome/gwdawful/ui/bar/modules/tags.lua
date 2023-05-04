@@ -12,10 +12,9 @@ local dpi       = beautiful.xresources.apply_dpi
 local helpers   = require('helpers')
 local rubato    = require('modules.rubato')
 
-local multiplier = 1
-if beautiful.bar_type == "horizontal" then
-    multiplier = beautiful.aspect_ratio * 0.66
-end
+local line_long   = beautiful.bar_size * 0.8
+local line_middle = beautiful.bar_size * 0.6
+local line_short  = beautiful.bar_size * 0.4
 
 local function gettaglist(s)
     return awful.widget.taglist {
@@ -25,7 +24,7 @@ local function gettaglist(s)
             shape = helpers.mkroundedrect(),
         },
         layout = {
-            spacing = dpi(beautiful.bar_size / 4),
+            spacing = dpi(beautiful.item_spacing),
             layout  = wibox.layout.fixed.vertical,
         },
         buttons = {
@@ -45,8 +44,7 @@ local function gettaglist(s)
                 widget = wibox.widget.textbox,
             },
             id = 'background_role',
-            forced_height = dpi(beautiful.bar_size * multiplier / 1.5),
-            forced_width  = dpi(beautiful.bar_size * multiplier / 6),
+            forced_height = dpi(line_middle),
             widget = wibox.container.background,
             create_callback = function (self, tag)
                 self.animate = rubato.timed {
@@ -58,11 +56,11 @@ local function gettaglist(s)
 
                 self.update = function ()
                     if tag.selected then
-                        self.animate.target = (beautiful.bar_size / 1.5 + 1) * multiplier
+                        self.animate.target = (line_long)
                     elseif #tag:clients() > 0 then
-                        self.animate.target = (beautiful.bar_size / 1.5 - beautiful.bar_size / 6) * multiplier
+                        self.animate.target = (line_middle)
                     else
-                        self.animate.target = (beautiful.bar_size / 6 + 1) * multiplier
+                        self.animate.target = (line_short)
                     end
                 end
 

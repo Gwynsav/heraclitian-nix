@@ -53,6 +53,7 @@ myRebinds =
     , ("M-S-<Print>" , unsafeSpawn "~/.local/bin/blast del")               -- Delayed (3s) screenshot
     -- EWW
     , ("M-b"         , unsafeSpawn "~/.config/eww/bin/widget bar")         -- Toggles bar visibility
+    , ("M-d"         , unsafeSpawn "~/.config/eww/bin/widget dashboard")   -- Toggles bar visibility
     -- XMonad
     , ("M-C-r"       , unsafeSpawn "xmonad --recompile; xmonad --restart") -- Reloads Xmonad
     ]

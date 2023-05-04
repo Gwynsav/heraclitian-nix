@@ -1,23 +1,47 @@
 #!/usr/bin/env bash
 
-volume="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
-
-case $1 in
-   "set")
-      # Takes a value in the integer range 0..100, and sets the 
-      # volume to it.
-      wpctl set-volume @DEFAULT_AUDIO_SINK@ $2% ;;
-   "toggle")
-      # Changes the state from to unmuted to muted, or viceversa.
-      wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
-   "state") 
-      # Check if `MUTED` is in the output of $volume.
-      # Finding it means that volume is muted.
-      [ "${volume#*MUTED}" != "$volume" ] && status="" || status=""
-      echo "$status" ;;
-   *)
-      # If no args are introduced, return volume level (0..100).
-      level="${volume#* }"
-      level="${level% *}"
-      [ "$level" = 1.00 ] && echo "100" || echo "${level#*.}" ;;
+case "$1" in
+   "audio")
+      volume="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+      case "$2" in
+         "set")
+            # Takes a value in the integer range 0..100, and sets the 
+            # volume to it.
+            wpctl set-volume @DEFAULT_AUDIO_SINK@ $3% ;;
+         "toggle")
+            # Changes the state from to unmuted to muted, or viceversa.
+            wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+         "state") 
+            # Check if `MUTED` is in the output of $volume.
+            # Finding it means that volume is muted.
+            [ "${volume#*MUTED}" != "$volume" ] && status="" || status=""
+            echo "$status" ;;
+         *)
+            # If no args are introduced, return volume level (0..100).
+            level="${volume#* }"
+            level="${level% *}"
+            [ "$level" = 1.00 ] && echo "100" || echo "${level#*.}" ;;
+      esac ;;
+   "mic")
+      volume="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@)"
+      case "$2" in
+         "set")
+            # Takes a value in the integer range 0..100, and sets the 
+            # volume to it.
+            wpctl set-volume @DEFAULT_AUDIO_SOURCE@ $3% ;;
+         "toggle")
+            # Changes the state from to unmuted to muted, or viceversa.
+            wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle ;;
+         "state") 
+            # Check if `MUTED` is in the output of $volume.
+            # Finding it means that volume is muted.
+            [ "${volume#*MUTED}" != "$volume" ] && status="" || status=""
+            echo "$status" ;;
+         *)
+            # If no args are introduced, return volume level (0..100).
+            level="${volume#* }"
+            level="${level% *}"
+            [ "$level" = 1.00 ] && echo "100" || echo "${level#*.}" ;;
+      esac ;;
+   *) echo "Available options: `audio` and `mic`."
 esac

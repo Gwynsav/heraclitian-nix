@@ -9,28 +9,28 @@
   };
   
   imports = [
-    # WM
-    # ( import ../../shared/config/wm/awesome        { } )
+    ## WM
+    ( import ../../shared/config/wm/awesome        { } )
     # ( import ../../shared/config/wm/openbox        { inherit pkgs lib; } )
-    ( import ../../shared/config/wm/xmonad         { inherit pkgs lib colors; } )
+    # ( import ../../shared/config/wm/xmonad         { inherit pkgs lib colors; } )
     
-    # Terminals
+    ## Terminals
     ( import ../../shared/config/term/tym          { inherit pkgs colors fonts; } )
 
-    # Shells
+    ## Shells
     ( import ../../shared/config/shell/hilbish     { inherit pkgs config; } )
 
-    # Editors
+    ## Editors
     # ( import ../../shared/config/editor/emacs      { inherit pkgs fonts; } )
     ( import ../../shared/config/editor/neovim     { inherit pkgs; } )
 
-    # Browsers
-    ( import ../../shared/config/browser/firefox   { inherit colors fonts; } )
-    ( import ../../shared/config/browser/librewolf { } )
+    ## Browsers
+    ( import ../../shared/config/browser/firefox   { inherit config colors fonts; } )
+    # ( import ../../shared/config/browser/librewolf { } )
 
-    # Utilities
-    ( import ../../shared/config/utils/rofi        { inherit config colors fonts; } )
-    ( import ../../shared/config/utils/eww         { inherit pkgs colors fonts; } )
+    ## Utilities
+    # ( import ../../shared/config/utils/rofi        { inherit config colors fonts; } )
+    # ( import ../../shared/config/utils/eww         { inherit pkgs colors fonts; } )
   ];
 
   gtk = {

@@ -1,4 +1,4 @@
-{ config, colors, fonts }:
+{ colors, fonts }:
 
 ''
   :root {
@@ -12,10 +12,11 @@
       --background-accent: #${colors.blk};
       --local-bot-side: #${colors.blu_d}CC;
   }
-  .theme-dark {
+  .theme-dark, .theme-light {
       --text-normal: #${colors.nfg};
       --text-muted: #${colors.dfg};
       --text-link: #${colors.cya_d};
+
       --background-primary: #${colors.nbg};
       --background-secondary: #${colors.lbg};
       --background-secondary-alt: #${colors.lbg};
@@ -23,11 +24,13 @@
       --background-floating: #${colors.lbg};
       --background-mentioned: #${colors.blu_d}21;
       --background-mentioned-hover: #${colors.blu}28;
+
       --channeltextarea-background: #${colors.lbg};
       --scrollbar-auto-track: #${colors.blk};
       --modal-footer-background: #${colors.blk};
       --home-background: var(--background-primary);
   }
+
   ::selection {background: var(--selection-col) !important;}
   .theme-dark .container-1um7CU,.theme-dark .container-2IKOsH, .theme-dark .header-3xB4vB, .theme-dark [class^="directoryModal-"] {
       background-color: var(--background-secondary-alt);
@@ -452,6 +455,7 @@
   [class*="mentioned"]:before {
       background-color: var(--background-mentioned);
   }
+  [class*="avatarDecoration-"] { display: none; }
   .theme-dark [aria-label="Message Actions"] > [class^="wrapper-"] {
       background: #${colors.nbg};
       border-radius: 0.5em;
@@ -465,5 +469,44 @@
       backdrop-filter: blur(0.5em);
       box-shadow: 0 0 3px 1px #${colors.nbg}14 !important;
       border: 1px solid var(--scrollbar-auto-track);
+  }
+
+
+
+  // Display code languages.
+  code.hljs:not(.inline)::before {
+      content:     attr(class);
+      float:       right;
+      max-width:   5.3rem;
+      margin-top:  -8.6rem;
+      line-height: 1.6rem;
+      text-align:  right;
+      font-size:   0.8rem;
+      opacity:     0.6;
+  }
+
+  // Compact Sidebar.
+  .sidebar-2K8pFh {
+      width: 180px !important;
+  }
+
+  // Hide Stuff 
+  // ----------
+  // Scrollbars.
+  ::-webkit-scrollbar {
+      display: none;
+  }
+  // Date.
+  [class*="divider-IqmEqJ"],
+  [class*="timestampVisibleOnHover"],
+  // Ugly leaf thing.
+  [class*="newMemberBadge-3PdStX"],
+  // Useless options for the bourgeois.
+  [aria-label="Send a gift"],
+  [aria-label="Open sticker picker"],
+  // Stalker mode.
+  [class*="typing-2J1mQU"]
+  {
+      display: none !important;
   }
 ''

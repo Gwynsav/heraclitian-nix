@@ -44,6 +44,9 @@ tooltip {
   color:            $nfg;
 }
 
+// Some numbers
+$radius: 6px;
+
 // Imports
 @import "./horizontal/bar/bar.scss";
 ''

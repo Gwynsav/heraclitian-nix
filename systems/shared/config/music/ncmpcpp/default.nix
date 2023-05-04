@@ -3,6 +3,7 @@
 {
   programs.ncmpcpp = {
     enable      = true;
+    package     = pkgs.unstable.ncmpcpp.override { visualizerSupport = true; };
     mpdMusicDir = "${config.home-manager.users.gw.home.homeDirectory}/Music";
     settings    = {
       # Miscelaneous
@@ -23,7 +24,6 @@
       statusbar_visibility      = false;
       header_visibility         = false;
       titles_visibility         = false;
-      # progressbar_look          = "▂▂▂";
       progressbar_look          = "‎‎‎";
       progressbar_color         = "black";
       progressbar_elapsed_color = "yellow";

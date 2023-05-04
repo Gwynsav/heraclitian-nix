@@ -2,14 +2,12 @@
 // --------
 .bar {
    background-color: $dbg;
-   min-height:       40px;
    padding:          0 2rem 0 2rem;
    font-size:        1rem;
 }
 
 // General
-.barVolumeIcon, .barNetworkIcon, 
-.barBluetoothIcon, .barDashboardIcon {
+.barStatusIcon {
    font-family: $icons;
    font-size:   1.2rem;
 }
@@ -54,13 +52,16 @@
 .barRofi {
    color:            $wht;
    background-color: $nbg;
-   border-radius:    1rem;
-   padding:          0 1.2rem 0 1.2rem;
-   margin:           0.6rem 0 0.6rem 0;
+   border-radius:    $radius;
+   padding:          0.6rem 1.2rem 0.6rem 1.2rem;
+   &:hover {
+      color:            $nbg;
+      background-color: $wht;
+   }
 }
 
 // Dashboard Button.
 .barDashboard {
-   color:       $cya;
-   font-weight: bold;
+   color:            $cya;
+   font-weight:      bold;
 }

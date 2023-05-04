@@ -33,8 +33,8 @@ local function gettasklist(s)
             awful.button({ }, 5, function() awful.client.focus.byidx( 1) end),
         },
         layout  = {
-            spacing = dpi(beautiful.bar_size / 10),
-            layout  = beautiful.bar_type == "vertical" and wibox.layout.fixed.vertical or wibox.layout.fixed.horizontal
+            spacing = dpi(beautiful.item_spacing),
+            layout  = beautiful.fixed_direction
         },
         style   = {
             shape   = helpers.mkroundedrect()
@@ -44,7 +44,7 @@ local function gettasklist(s)
                 {
                     widget  = awful.widget.clienticon
                 },
-                margins = dpi(beautiful.bar_size / 10),
+                margins = dpi(beautiful.item_spacing),
                 widget  = wibox.container.margin
             },
             id      = 'background_role',

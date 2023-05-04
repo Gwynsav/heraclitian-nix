@@ -60,12 +60,6 @@
 
   # Filesystem & Persistent Files
   # -----------------------------
-  fileSystems."/" = {
-    device  = "none";
-    fsType  = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ];
-  };
-
   environment.persistence."/nix/persist" = {
     directories = [
       "/etc/nixos"

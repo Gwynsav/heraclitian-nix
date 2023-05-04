@@ -6,11 +6,11 @@ temp="/tmp/ss-$(date +%Y%m%d-%H%M%S).png"
 
 case "$1" in
    "sel")
-      shotgun $(hacksaw -f '-i %i -g %g') $temp ;;
+      maim -s $temp ;;
    "scr")
-      shotgun $temp ;;
+      maim $temp ;;
    "del")
-      sleep 3; shotgun $temp ;;
+      sleep 3; maim $temp ;;
 esac
 
 xclip -se c -t image/png -i $temp

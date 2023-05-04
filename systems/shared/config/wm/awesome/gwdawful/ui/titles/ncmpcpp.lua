@@ -14,18 +14,20 @@ local dpi       = beautiful.xresources.apply_dpi
 local helpers   = require('helpers')
 local playerctl = require('modules.bling').signal.playerctl.lib()
 
+local player_size = beautiful.title_size * 2
+
 -- Widgets
 ----------
 -- Draggable progressbar
 local is_prog_hovered = false
 local song_prog = wibox.widget {
-    bar_color        = beautiful.lbg,
+    bar_color        = beautiful.titlebar_bg_focus,
     bar_active_color = beautiful.cya,
     handle_color     = beautiful.cya_d,
     handle_shape     = helpers.mkroundedrect(),
     bar_shape        = helpers.mkroundedrect(),
-    handle_width     = dpi(beautiful.resolution * 0.66),
-    forced_height    = dpi(beautiful.resolution * 0.66),
+    handle_width     = dpi(beautiful.item_spacing),
+    forced_height    = dpi(beautiful.item_spacing),
     minimum          = 0,
     widget           = wibox.widget.slider,
 }
@@ -59,26 +61,25 @@ local function infoline(default, size, color)
     return wibox.widget {
         {
             {
-              id     = 'text_role',
-              markup = default,
-              font   = beautiful.ui_font .. dpi(beautiful.resolution * size),
-              widget = wibox.widget.textbox
+                id     = 'text_role',
+                markup = default,
+                font   = beautiful.ui_font .. dpi(size),
+                widget = wibox.widget.textbox
             },
-            widget        = wibox.container.scroll.horizontal,
-            step_function = wibox.container.scroll.step_functions.
-                            waiting_nonlinear_back_and_forth,
-            speed         = 100,
-            rate          = 144
+            fg       = color,
+            widget   = wibox.container.background
         },
-        fg       = color,
-        widget   = wibox.container.background,
+        step_function = wibox.container.scroll.step_functions
+                        .waiting_nonlinear_back_and_forth,
+        speed  = 100,
+        layout = wibox.container.scroll.horizontal,
         set_markup = function(self, content)
             self:get_children_by_id('text_role')[1].markup = content
         end
     }
 end
-local song_title  = infoline("<b>Nothing Playing</b>", 1,    beautiful.nfg)
-local song_artist = infoline("Unknown",                0.75, beautiful.dfg)
+local song_title  = infoline("<b>Nothing Playing</b>", beautiful.tiny_font_size, beautiful.nfg)
+local song_artist = infoline("Unknown",                beautiful.tiny_font_size, beautiful.dfg)
 
 -- Control buttons
 local function ctrlbtn(icon, run)
@@ -87,10 +88,10 @@ local function ctrlbtn(icon, run)
             {
                 id     = "text_role",
                 text   = icon,
-                font   = beautiful.ic_font .. dpi(beautiful.resolution * 1.3),
+                font   = beautiful.ic_font .. dpi(beautiful.subt_font_size),
                 widget = wibox.widget.textbox
             },
-            margins = dpi(0.4 * beautiful.resolution),
+            margins = dpi(beautiful.item_spacing),
             widget  = wibox.container.margin
         },
         fg      = beautiful.nfg,
@@ -117,38 +118,42 @@ local loop_btn = ctrlbtn("", function() playerctl:cycle_loop_status() end)
 local is_vol_hovered = false
 local vol_bar = wibox.widget {
     {
-        {
-            text   = "",
-            align  = "center",
-            font   = beautiful.ic_font .. dpi(beautiful.resolution * 1.3),
-            widget = wibox.widget.textbox
-        },
-        fg     = beautiful.grn,
-        widget = wibox.container.background
+       {
+           {
+               text   = "",
+               align  = "center",
+               font   = beautiful.ic_font .. dpi(beautiful.subt_font_size),
+               widget = wibox.widget.textbox
+           },
+           fg     = beautiful.grn,
+           widget = wibox.container.background
+       },
+       {
+           {
+               id                  = 'slider_role',
+               bar_shape           = helpers.mkroundedrect(),
+               bar_color           = beautiful.gry,
+               bar_active_color    = beautiful.grn,
+               handle_color        = beautiful.grn,
+               handle_shape        = helpers.mkroundedrect(),
+               minimum             = 0,
+               maximum             = 100,
+               handle_width        = dpi(beautiful.item_spacing),
+               bar_height          = dpi(beautiful.item_spacing),
+               forced_height       = dpi(beautiful.base_font_size),
+               forced_width        = dpi(beautiful.giga_padding * 3),
+               widget              = wibox.widget.slider
+           },
+           top    = dpi(beautiful.item_padding),
+           bottom = dpi(beautiful.item_padding),
+           widget = wibox.container.margin
+       },
+       spacing = dpi(beautiful.tiny_font_size),
+       layout  = wibox.layout.fixed.horizontal
     },
-    {
-        {
-            id                  = 'slider_role',
-            bar_shape           = helpers.mkroundedrect(),
-            bar_color           = beautiful.gry,
-            bar_active_color    = beautiful.grn,
-            handle_color        = beautiful.grn,
-            handle_shape        = helpers.mkroundedrect(),
-            minimum             = 0,
-            maximum             = 100,
-            handle_width        = dpi(beautiful.resolution),
-            bar_height          = dpi(beautiful.resolution * 0.66),
-            forced_height       = dpi(beautiful.resolution),
-            forced_width        = dpi(beautiful.resolution * 6),
-            widget              = wibox.widget.slider
-        },
-        top    = dpi(beautiful.resolution * 1.5),
-        bottom = dpi(beautiful.resolution * 1.5),
-        right  = dpi(beautiful.resolution * 1.5),
-        widget = wibox.container.margin
-    },
-    spacing = dpi(beautiful.resolution * 0.8),
-    layout  = wibox.layout.fixed.horizontal,
+    left   = dpi(beautiful.title_font_size),
+    right  = dpi(beautiful.title_font_size),
+    widget = wibox.container.margin,
     get_slider = function(self)
         return self:get_children_by_id('slider_role')[1]
     end,
@@ -170,7 +175,7 @@ end)
 --------------
 local top = function(c)
     awful.titlebar(c, { position = "top", 
-                        size     = dpi(beautiful.titles_size), 
+                        size     = dpi(beautiful.title_size), 
                         bg       = beautiful.titlebar_bg_focus }):setup {
         nil,
         nil,
@@ -193,8 +198,8 @@ end
 
 local bottom = function(c)
     awful.titlebar(c, { position = "bottom", 
-                        size     = dpi(beautiful.resolution * 6.66), 
-                        bg       = beautiful.titlebar_bg_focus }):setup {
+                        size     = dpi(player_size), 
+                        bg       = beautiful.titlebar_bg_normal }):setup {
         song_prog,
         {
             {
@@ -209,28 +214,36 @@ local bottom = function(c)
                         valign = "center",
                         widget = wibox.container.place
                     },
-                    spacing = dpi(beautiful.resolution),
+                    spacing = dpi(beautiful.base_font_size),
                     layout  = wibox.layout.fixed.horizontal
                 },
                 {
                     {
-                        loop_btn,
                         prev_btn,
                         play_btn,
                         next_btn,
-                        shff_btn,
-                        spacing = dpi(beautiful.resolution * 0.5),
+                        spacing = dpi(beautiful.item_spacing),
                         layout  = wibox.layout.fixed.horizontal
                     },
-                    margins = dpi(beautiful.resolution * 0.66),
+                    margins = dpi(beautiful.ring_size),
                     widget  = wibox.container.margin
                 },
-                vol_bar,
+                {
+                    {
+                        vol_bar,
+                        loop_btn,
+                        shff_btn,
+                        spacing = dpi(beautiful.item_spacing),
+                        layout  = wibox.layout.fixed.horizontal
+                    },
+                    margins = dpi(beautiful.ring_size),
+                    widget  = wibox.container.margin
+                },
                 expand = "none",
                 layout = wibox.layout.align.horizontal
             },
-            margins = dpi(beautiful.resolution),
-            widget  = wibox.container.margin,
+            margins = dpi(beautiful.base_font_size),
+            widget  = wibox.container.margin
         },
         layout = wibox.layout.fixed.vertical
     }
@@ -285,11 +298,16 @@ end)
 --------
 local ncmpcpp_ui = function(c)
     -- Unbind default titlebar
-    awful.titlebar.hide(c, beautiful.titles_position)
+    if beautiful.is_title_horizontal then
+        awful.titlebar.hide(c, beautiful.title_side)
+        awful.titlebar.show(c, "top")
+    -- elseif (beautiful.title_side == "right") then
+        -- sidebar(c)
+    end
 
     -- Bind custom titlebars
     bottom(c)
-    top(c)
+    -- top(c)
 end
 
 ruled.client.connect_signal("request::rules", function()

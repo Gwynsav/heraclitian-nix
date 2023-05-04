@@ -1,28 +1,6 @@
 { config, pkgs, lib, colors, fonts, impermanence, ... }:
 
 {
-  # User Setup
-  # ----------
-  home = {
-    username      = "gw";
-    homeDirectory = "/home/gw";
-    packages = lib.attrValues {
-      inherit (pkgs)
-        # editing/recording
-        gimp inkscape obs-studio
-        # viewing and modifying
-        tageditor gpick nsxiv
-        # screenshooting
-        shotgun hacksaw xclip
-        # notifications/audio libs
-        libnotify pulseaudio; 
-      inherit (pkgs.gnome)
-        gucharmap;
-      inherit (pkgs.cinnamon)
-        nemo;
-    };
-  };
-
   # Config Files
   # ------------
   imports = [ 
@@ -62,6 +40,11 @@
       ".local/share/keyrings"
       ".local/share/direnv"
       ".local/share/hilbish"
+      ".local/nvim/lspservers"
+      ".local/nvim/parsers"
+
+      # Browser extension configuration
+      ".mozilla/firefox/gw"
 
       # Playlists and music state
       ".local/share/mpd"
@@ -86,6 +69,7 @@
       }
     ];
     files = [
+      # Basic stuff
       ".screenrc"
       ".gitconfig"
     ];
@@ -96,6 +80,29 @@
   # ------------
   programs.home-manager.enable = true;
   home = {
+    # Home Manager release at time of installation.
+    stateVersion = "22.11";
+
+    # User setup.
+    username      = "gw";
+    homeDirectory = "/home/gw";
+    packages = lib.attrValues {
+      inherit (pkgs)
+        # editing/recording
+        gimp inkscape obs-studio
+        # viewing and modifying
+        tageditor gpick nsxiv
+        # screenshooting
+        maim xclip
+        # notifications/audio libs
+        libnotify pulseaudio; 
+      inherit (pkgs.gnome)
+        gucharmap;
+      inherit (pkgs.cinnamon)
+        nemo;
+    };
+
+    # Files and Variables.
     file = {
       ".local/bin/run" = {
          text       = import ./bin/run.nix {};
@@ -117,7 +124,7 @@
     sessionPath  = [ 
       "${config.home-manager.users.gw.home.homeDirectory}/.local/bin" 
     ];
-    # Home Manager release at time of installation.
-    stateVersion = "22.11";
   };
+
+  xdg.enable = true;
 }

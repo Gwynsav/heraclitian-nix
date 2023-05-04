@@ -1,8 +1,10 @@
 ;; Polling Variables
 ;; -----------------
 ;; Audio
-(defpoll volume          :interval "3s"  "~/.config/eww/bin/volume")
-(defpoll volumeStatus    :interval "3s"  "~/.config/eww/bin/volume state")
+(defpoll volume          :interval "3s"  "~/.config/eww/bin/volume audio")
+(defpoll volumeStatus    :interval "3s"  "~/.config/eww/bin/volume audio state")
+(defpoll mic             :interval "6s"  "~/.config/eww/bin/volume mic")
+(defpoll micStatus       :interval "6s"  "~/.config/eww/bin/volume mic state")
 
 ;; Networking
 (defpoll network         :interval "12s" "~/.config/eww/bin/network ssid")

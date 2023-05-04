@@ -18,7 +18,6 @@ case "$1" in
    # known to exist, and will throw an error notification if used
    # to open a window that isn't listed below.
    "bar")       toggle bar ;;
-   "dashboard") toggle dashboard ;;
 
    *) notify-send "Widgets" \
         "Attempt to toggle an inexistent widget." ;;

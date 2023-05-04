@@ -9,10 +9,11 @@
    
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
+    nur.url          = "github:nix-community/NUR";
     nixpkgs-f2k.url  = "github:fortuneteller2k/nixpkgs-f2k";
   };
   
-  outputs = { self, nixpkgs, impermanence, home-manager, ... } @inputs:
+  outputs = { self, nixpkgs, impermanence, home-manager, nur, ... } @inputs:
     with nixpkgs.lib; let
 
       config = {
@@ -38,7 +39,7 @@
       nixosConfigurations = {
         interim = 
           import ./systems/interim
-          { inherit config nixpkgs overlays inputs impermanence home-manager; };
+          { inherit config nixpkgs overlays inputs impermanence home-manager nur; };
       };
       interim = self.nixosConfigurations.interim.config.system.build.toplevel;
     };

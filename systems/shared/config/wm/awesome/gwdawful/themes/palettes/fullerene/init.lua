@@ -1,5 +1,5 @@
--- Mar Colorscheme
-------------------
+-- Fullerene Colorscheme
+------------------------
 local clrs = {}
     clrs.dbg   = "#0f0f0f"
     clrs.nbg   = "#161616"
