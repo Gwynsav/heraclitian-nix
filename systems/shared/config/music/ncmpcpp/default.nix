@@ -14,6 +14,7 @@
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "Visualizer";
       visualizer_in_stereo   = true;
+      visualizer_autoscale   = true;
       visualizer_type        = "ellipse";
       visualizer_look        = "";
       visualizer_color       = "magenta, blue, cyan, green";

@@ -4,7 +4,9 @@
   services.picom = {
     enable    = true;
     backend   = "glx";
-    extraArgs = [ "--experimental-backends" ];
+    # The "experimental-backends" flag has been deprecated.
+    # See https://github.com/yshui/picom/pull/875.
+    # extraArgs = [ "--experimental-backends" ];
 
     shadow    = true;
     shadowExclude = [ 
@@ -24,14 +26,20 @@
       xrender-sync-fence   = true;
       use-damage           = true;
       blur_background      = false;
+      vSync                = true;
 
       # Fancy shadows
       shadow-radius        = 20;
       shadow-color         = "#${colors.dbg}";
 
-      # :)
-      vSync                = true;
-      animations           = true;
+      # FT-Labs Picom fork animations. Unlike dccsillag's and
+      # Pijulius', it actually works properly on my system.
+      animations                 = true;
+      # Open and close animations.
+      animation-for-open-window  = "zoom";
+      animation-for-unmap-window = "squeeze";
+      # Popup animations.
+      animation-for-trasient-window = "slide-down";
     };
 
     wintypes  = {

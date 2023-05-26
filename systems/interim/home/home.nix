@@ -2,15 +2,16 @@
 
 {
   home.packages = lib.attrValues {
-    inherit (pkgs.stable)
-      openrgb piper;
+    inherit (pkgs)
+      openrgb piper 
+      tokyonight-gtk;
     inherit (pkgs.unstable)
       protonup-ng heroic;
   };
   
   imports = [
     ## WM
-    ( import ../../shared/config/wm/awesome        { } )
+    # ( import ../../shared/config/wm/awesome        { } )
     # ( import ../../shared/config/wm/openbox        { inherit pkgs lib; } )
     # ( import ../../shared/config/wm/xmonad         { inherit pkgs lib colors; } )
     
@@ -35,7 +36,7 @@
 
   gtk = {
     enable     = true;
-    # theme.name = "";
+    theme.name = "phocus";
     iconTheme = {
       name    = "Papirus Dark";
       package = pkgs.papirus-icon-theme;

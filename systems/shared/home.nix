@@ -53,6 +53,9 @@
       # Recording settings and setup
       ".config/obs-studio/basic/profiles"
 
+      # AwesomeWM
+      ".config/awesome"
+
       # Persist Steam login, settings and installed games
       # and compatibility tools. Steam doesn't like symlinks.
       ".local/share/Steam"
@@ -88,6 +91,8 @@
     homeDirectory = "/home/gw";
     packages = lib.attrValues {
       inherit (pkgs)
+        # tools
+        pcmanfm font-manager galculator
         # editing/recording
         gimp inkscape obs-studio
         # viewing and modifying
@@ -96,10 +101,6 @@
         maim xclip
         # notifications/audio libs
         libnotify pulseaudio; 
-      inherit (pkgs.gnome)
-        gucharmap;
-      inherit (pkgs.cinnamon)
-        nemo;
     };
 
     # Files and Variables.

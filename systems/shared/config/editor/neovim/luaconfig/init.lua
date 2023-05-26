@@ -9,7 +9,7 @@ require('options')
 vim.cmd([[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]])
 
 local scheme = require('lib.scheme')
-scheme.load_shared_scheme('oxocarbon')
+scheme.load_shared_scheme('tokyonight')
 scheme.load_global_style({' ', ' '}, {'|', '|'})
 
 -- I disabled LSP because all it did was throw errors. You'll need to

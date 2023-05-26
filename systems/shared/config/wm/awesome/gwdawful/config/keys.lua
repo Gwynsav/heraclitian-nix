@@ -11,8 +11,8 @@ local beautiful = require('beautiful')
 require('awful.autofocus') -- don't remove this, trust me
 
 term_cmd        = terminal:match('wezterm') and " start " or " -e "
-editor_cmd      = (editor:match('emacs -nw') or not editor:match('emacs'))
-                  and terminal .. term_cmd .. editor or editor
+editor_cmd      = editor == "emacs" and editor 
+                  or terminal .. term_cmd .. editor
 files_cmd       = terminal .. term_cmd .. files_cli
 tasks_cmd       = terminal .. term_cmd .. top
 
@@ -59,7 +59,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, "Control" }, "Return",  function() scratch.terminal:toggle() end,
               { description = "Opens a terminal scratchpad", group = "Programs" }),
     -- Scratchpad music player
-    awful.key({ modkey, "Control" }, "p",  function() scratch.music:toggle() end,
+    awful.key({ modkey, "Control" }, "p",       function() scratch.music:toggle() end,
               { description = "Opens a music scratchpad", group = "Programs" }),
     -- Editor
     awful.key({ modkey, "Shift"   }, "Return",  function() awful.spawn(editor_cmd) end,
@@ -73,8 +73,6 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey,           }, "Escape",  function() awful.spawn(tasks_cmd) end,
               { description = "Open a task manager", group = "Programs" }),
     -- Application launcher
-    -- awful.key({ modkey            }, "p",       function() awful.spawn(app_launcher) end,
-    --           { description = "Open the application launcher", group = "Programs" }),
     awful.key({ modkey            }, "p",       function() launcher:toggle() end,
               { description = "Open the application launcher", group = "Programs" }),
 

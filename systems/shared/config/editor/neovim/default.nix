@@ -67,9 +67,10 @@
 
       ## Colorscheme
       # vim-colors-solarized
-      nvim-solarized-lua
-      oxocarbon-nvim
       everforest
+      oxocarbon-nvim
+      nvim-solarized-lua
+      tokyonight-nvim
     ];
   };
   xdg.configFile.nvim.source = ./luaconfig;

@@ -28,22 +28,21 @@ menu.mainmenu = awful.menu({
                 {
                     { "Config",  editor_cmd .. " " .. gfs.get_configuration_dir() },
                     { "Restart", awesome.restart },
-                },
+                }
             },
             {
                 "Power",
                 {
                     { "Log Out",  function() awesome.quit() end                    },
                     { "Restart",  function() awful.spawn("systemctl reboot") end   },
-                    { "Shutdown", function() awful.spawn("systemctl poweroff") end },
-                },
+                    { "Shutdown", function() awful.spawn("systemctl poweroff") end }
+                }
             }
         }
 })
 
 -- apply rounded corners to submenus,                         by u/signalsourcesexy
 -- also applies antialiasing,                                 by AlphaTechnolog
--- added padding, corners now apply to the submenu as a unit. by gw
 menu.mainmenu.wibox.shape = helpers.mkroundedrect()
 menu.mainmenu.wibox.bg    = beautiful.bg_normal .. '00'
 menu.mainmenu.wibox:set_widget(wibox.widget({

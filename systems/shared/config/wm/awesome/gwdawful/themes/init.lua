@@ -53,6 +53,10 @@ theme.fg_normal = theme.nfg
 theme.fg_focus  = theme.nfg
 theme.fg_urgent = theme.red
 
+if user.dpi ~= nil then
+    beautiful.xresources.set_dpi(user.dpi)
+end
+
 --------------
 -- Settings --
 --------------

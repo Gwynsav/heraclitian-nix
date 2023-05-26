@@ -1,7 +1,6 @@
 { colors, fonts }:
 ''
 :root {
-   --font-sans-serif: "${fonts.sans}", sans-serif !important;
    --font-monospace:  "${fonts.mono}", monospace !important;
    --font-size:       14px;
 
@@ -80,10 +79,18 @@
     border-radius:    0;
 }
 
+/** Collapse **/
+/* Server List */
+nav[aria-label="Servers sidebar"] {
+    width: 10px;
+    transition: width 0.5s;
+}
+nav[aria-label="Servers sidebar"]:hover {
+    width: 70px;
+}
+
 /** Hide **/
 [aria-label="Channel header"],
-[class*="sidebar-1tnWFu"],
-nav[aria-label="Servers sidebar"],
 /* Date */
 [class*="divider-IqmEqJ"],
 /* Inlined TimeStamp */
@@ -108,6 +115,12 @@ nav[aria-label="Servers sidebar"],
 /* No scrollbars */
 ::-webkit-scrollbar {
     display: none;
+}
+
+/* Unshit sidebar */
+[class*="sidebar-1tnWFu"] {
+    padding: 1em;
+    width: 240px;
 }
 
 /* Fancy replies */
@@ -135,14 +148,6 @@ nav[aria-label="Servers sidebar"],
 }
 [class*="repliedTextContent"], [class*="repliedTextPreview"] {
    grid-row: 2;
-}
-
-/* Reduce rounding of avatars, remove for embedded images */
-.avatar-2e8lTP {
-    border-radius: 6;
-}
-.imageContainer-10XenG {
-    border-radius: 0;
 }
 
 /* Add padding around message area */
@@ -227,11 +232,5 @@ code.hljs:not(.inline) {
 pre > code,
 pre > code * {
     font-family: var(--font-monospace) !important;
-}
-
-/* Change fonts */
-:not([class="hljs"]):not(code){
-    font-family: "eeeee" !important;
-    font-size:   var(--font-size) !important;
 }
 ''

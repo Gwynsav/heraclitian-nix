@@ -26,11 +26,11 @@ dashboard.section.header.val = {
 	[[┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙]]
 }
 dashboard.section.buttons.val = {
-	dashboard.button("n",      "ﱐ New File",  ":ene <BAR> startinsert <CR>"),
-	dashboard.button("SPC ff", " Find File", ":Telescope find_files <CR>"),
-	dashboard.button("SPC fw", " Find Word", ":Telescope live_grep <CR>"),
-	dashboard.button("b",      " Bookmarks", ":Telescope marks <CR>"),
-	dashboard.button("SPC fh", " Recents",   ":Telescope oldfiles <CR>")
+	dashboard.button("n",      " New File",  ":ene <BAR> startinsert <CR>"),
+	dashboard.button("SPC ff", " Find File", ":Telescope find_files <CR>"),
+	dashboard.button("SPC fw", " Find Word", ":Telescope live_grep <CR>"),
+	dashboard.button("b",      " Bookmarks", ":Telescope marks <CR>"),
+	dashboard.button("SPC fh", " Recents",   ":Telescope oldfiles <CR>")
 }
 dashboard.section.footer.val = {
 	'	',

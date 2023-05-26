@@ -24,7 +24,8 @@
   # --------------------
   boot = {
     kernelPackages = pkgs.unstable.linuxPackages_latest;
-    kernelModules  = [ "i2c-piix4" "i2c-dev" ];
+    kernelModules  = [ "nvidia" "nvidia-drm" "nvidia-modeset" 
+                       "i2c-piix4" "i2c-dev" ];
     loader = {
       grub.useOSProber = true;
       timeout          = null;

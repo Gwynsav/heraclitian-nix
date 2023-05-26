@@ -73,8 +73,8 @@ user.bluetooth    = true
 --- by emitting the 'widget::bar' signal (mod + b) even if disabled.
 --- Defaults to true.
 -- user.bar_enabled  = true
---- Can be 'top', 'bottom', 'right' or 'left'. Defaults to 'left'.
-user.bar_pos      = "right"
+--- Can be 'top', 'bottom', 'right' or 'left'. Defaults to 'bottom'.
+user.bar_pos      = "left"
 
 --- Titles
 --- Toggles titlebars. Defaults to true.
@@ -105,7 +105,7 @@ user.border_rad   = 0
 ---  light:
 ---    'gruvbox', 'solarized'
 --- More themes can be added at `themes/palettes`. DOES NOT have a default.
-user.clr_palette  = "oxocarbon"
+user.clr_palette  = "tokyonight"
 --- GTK icon pack to use, comment for Papirus or name.
 -- user.icon_pack    = "Papirus"
 --- Fonts to be used.
@@ -118,7 +118,7 @@ user.clr_palette  = "oxocarbon"
 --- Your *amazing* profile picture. Path or comment for default.
 user.avatar       = "/etc/nixos/systems/shared/assets/avatar.png"
 --- Your wallpaper path. Path, or comment for colorscheme default.
--- user.wall         = os.getenv("HOME") .. "/Pictures/walls/everblush/Smily.jpg"
+-- user.wall         = os.getenv("HOME") .. "/Pictures/walls/urban/Facade.jpg"
 --- Music player fallback background. Path, or comment for colorscheme default.
 -- user.player_bg    = os.getenv("HOME") .. "/Pictures/walls/landscape/Somewhere.png"
 --- AwesomeWM icon to be used (comment for default awesome icon): 

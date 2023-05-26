@@ -173,29 +173,6 @@ end)
 
 -- Decorations
 --------------
-local top = function(c)
-    awful.titlebar(c, { position = "top", 
-                        size     = dpi(beautiful.title_size), 
-                        bg       = beautiful.titlebar_bg_focus }):setup {
-        nil,
-        nil,
-        nil,
-        buttons = {
-            awful.button({}, 1, function()
-                client.focus = c
-                c:raise()
-                awful.mouse.client.move(c)
-            end),
-            awful.button({}, 3, function()
-                client.focus = c
-                c:raise()
-                awful.mouse.client.resize(c)
-            end)
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end
-
 local bottom = function(c)
     awful.titlebar(c, { position = "bottom", 
                         size     = dpi(player_size), 
@@ -297,6 +274,9 @@ end)
 -- Apply
 --------
 local ncmpcpp_ui = function(c)
+    -- Bind custom titlebars
+    bottom(c)
+
     -- Unbind default titlebar
     if beautiful.is_title_horizontal then
         awful.titlebar.hide(c, beautiful.title_side)
@@ -305,9 +285,6 @@ local ncmpcpp_ui = function(c)
         -- sidebar(c)
     end
 
-    -- Bind custom titlebars
-    bottom(c)
-    -- top(c)
 end
 
 ruled.client.connect_signal("request::rules", function()

@@ -124,13 +124,13 @@
         ibm-plex
         material-icons
         noto-fonts-emoji-blob-bin;
-    } ++ [( pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; } )];
+    } ++ [( pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; } )];
     fontconfig = {
       enable = true;
       defaultFonts = {
         sansSerif = [ "IBM Plex Sans" ];
         serif     = [ "IBM Plex Serif" ];
-        monospace = [ "IBM Plex Mono" "FiraCode Nerd Font" ];
+        monospace = [ "BlexMono Nerd Font" ];
         emoji     = [ "Blobmoji" ];
       };
     };
@@ -163,7 +163,7 @@
 
   # Qt / GTK
   # --------
-  qt5 = {
+  qt = {
     enable        = true;
     platformTheme = "gtk2";
     style         = "gtk2";
